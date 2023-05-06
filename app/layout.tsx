@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import Sidebar from "@/components/layout/Sidebar"
 import FollowBar from "@/components/layout/FollowBar"
 import Header from "@/components/Header"
+import Modal from "@/components/modals/Modal"
 
 interface LayoutProps {
   children: React.ReactNode
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/*<Modal isOpen actionLabel="Submit" />*/}
         <div className="h-screen bg-zinc-900">
           <div className="container h-full mx-auto xl:px-30 max-w-6xl">
             <div className="grid grid-cols-4 h-full">
