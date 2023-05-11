@@ -6,6 +6,7 @@ import Header from "@/components/Header"
 import UserHero from "@/components/users/UserHero"
 import UserBio from "@/components/users/UserBio"
 import useUser from "@/hooks/useUser"
+import PostFeed from "@/components/posts/PostFeed"
 
 const UserPage = () => {
   const searchParams = useSearchParams()
@@ -30,6 +31,7 @@ const UserPage = () => {
       <Header showBackArrow label={`${user.name}'s profile`} />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />
+      <PostFeed userId={userId as string} />
     </>
   )
 }
