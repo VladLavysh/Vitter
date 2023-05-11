@@ -1,5 +1,11 @@
+import Header from "@/components/Header"
+
 const Notifications = () => {
-  return <div>Notifications page</div>
+  return (
+    <>
+      <Header label="Notifications" />
+    </>
+  )
 }
 
 export default Notifications
