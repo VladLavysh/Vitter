@@ -3,11 +3,15 @@
 import { BsHouseFill, BsBellFill } from "react-icons/bs"
 import { FaUser } from "react-icons/fa"
 import { BiLogOut } from "react-icons/bi"
+import { signOut } from "next-auth/react"
+import useCurrentUser from "@/hooks/useCurrentUser"
 import SidebarLogo from "./SidebarLogo"
 import SidebarItem from "./SidebarItem"
 import SidebarTweetButton from "./SidebarTweetButton"
 
 const Sidebar = () => {
+  const { data: currentUser } = useCurrentUser()
+
   const items = [
     {
       label: "Home",
@@ -18,18 +22,16 @@ const Sidebar = () => {
       label: "Notifications",
       path: "/notifications",
       icon: BsBellFill,
+      auth: true,
     },
     {
       label: "Profile",
       path: "/profile",
       icon: FaUser,
+      auth: true,
     },
     // Explore, Messages, Bookmarks, Lists, More
   ]
-
-  const signOut = () => {
-    throw new Error("Function not implemented.")
-  }
 
   return (
     <div className="col-span-1 h-full pr-4 md:pr-6">
@@ -43,10 +45,10 @@ const Sidebar = () => {
               path={item.path}
               icon={item.icon}
               //alert={item.alert}
-              //auth={item.auth}
+              auth={item.auth}
             />
           ))}
-          {"currentUser" && (
+          {currentUser && (
             <SidebarItem
               onClick={() => signOut()}
               icon={BiLogOut}
