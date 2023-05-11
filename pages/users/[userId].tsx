@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "next/navigation"
 import Header from "@/components/Header"
 import UserHero from "@/components/users/UserHero"
-import UserBio from "@/components/users/UsersBio"
+import UserBio from "@/components/users/UserBio"
 import useUser from "@/hooks/useUser"
 
 const UserPage = () => {
