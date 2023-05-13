@@ -22,14 +22,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         userId: currentUser.id,
         postId
       }
-    });
+    })
 
     try {
       const post = await prisma.post.findUnique({
         where: {
           id: postId,
         }
-      });
+      })
 
       if (post?.userId) {
         await prisma.notification.create({
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             body: 'Someone replied on your tweet!',
             userId: post.userId
           }
-        });
+        })
 
         await prisma.user.update({
           where: {
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           data: {
             hasNotification: true
           }
-        });
+        })
       }
     }
     catch (error) {

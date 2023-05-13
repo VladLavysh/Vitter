@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       where: {
         id: postId
       }
-    });
+    })
 
     if (!post) {
       throw new Error('Invalid ID')
@@ -36,15 +36,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           where: {
             id: postId,
           }
-        });
+        })
     
         if (post?.userId) {
           await prisma.notification.create({
             data: {
-              body: 'Someone liked your tweet!',
+              body: 'Someone liked your vitee!',
               userId: post.userId
             }
-          });
+          })
     
           await prisma.user.update({
             where: {
@@ -53,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             data: {
               hasNotification: true
             }
-          });
+          })
         }
       } catch(error) {
         console.log(error)
@@ -71,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: {
         likedIds: updatedLikedIds
       }
-    });
+    })
 
     return res.status(200).json(updatedPost)
   } catch (error) {

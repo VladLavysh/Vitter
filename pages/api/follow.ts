@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       where: {
         id: userId
       }
-    });
+    })
 
     if (!user) {
       throw new Error('Invalid ID')
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             body: 'Someone followed you!',
             userId,
           },
-        });
+        })
 
         await prisma.user.update({
           where: {
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           data: {
             hasNotification: true,
           }
-        });
+        })
       } catch (error) {
         console.log(error)
       }
