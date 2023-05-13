@@ -5,7 +5,7 @@ import Header from "@/components/Header"
 import Form from "@/components/UI/Form"
 import PostItem from "@/components/posts/PostItem"
 import Head from "next/head"
-//import CommentFeed from "@/components/posts/CommentFeed"
+import CommentFeed from "@/components/posts/CommentFeed"
 
 const PostView = () => {
   const postId = useSearchParams().get("postId")
@@ -30,6 +30,7 @@ const PostView = () => {
           key="desc"
         />
       </Head>
+
       <Header showBackArrow label="Vitee" />
       <PostItem data={fetchedPost} />
       <Form
@@ -37,7 +38,7 @@ const PostView = () => {
         isComment
         placeholder="Vitee your reply..."
       />
-      {/*<CommentFeed comments={fetchedPost?.comments} />*/}
+      <CommentFeed comments={fetchedPost?.comments} />
     </>
   )
 }
