@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 import fetcher from '@/libs/fetcher'
 
-const usePost = (userId?: string) => {
-  const url = userId ? `/api/posts?userId=${userId}` : '/api/posts'
+const usePost = (popstId: string) => {
+  const url = popstId ? `/api/posts/${popstId}` : null
   const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {

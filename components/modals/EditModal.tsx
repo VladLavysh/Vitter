@@ -28,7 +28,7 @@ const EditModal = () => {
     setCoverImage(currentUser?.coverImage)
     setName(currentUser?.name)
     setUsername(currentUser?.username)
-    setBio(currentUser?.bio)
+    setBio(currentUser?.bio || "")
   }, [
     currentUser?.name,
     currentUser?.username,

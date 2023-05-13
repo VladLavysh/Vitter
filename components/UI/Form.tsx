@@ -36,7 +36,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
       await axios.post(url, { body })
 
-      toast.success("Tweet created")
+      toast.success("Vitee created")
       setBody("")
       mutatePosts()
       mutatePost()
@@ -46,6 +46,16 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       setIsLoading(false)
     }
   }, [body, mutatePosts, isComment, postId, mutatePost])
+
+  const onEnterPress = useCallback(
+    (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault()
+        onSubmit()
+      }
+    },
+    [onSubmit]
+  )
 
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">
@@ -58,19 +68,24 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             <textarea
               disabled={isLoading}
               onChange={(event) => setBody(event.target.value)}
+              onKeyDown={onEnterPress}
               value={body}
               className="
                 disabled:opacity-80
                 peer
                 resize-none 
                 mt-3 
+                pl-2
                 w-full 
-                bg-black 
+                bg-zinc-900 
                 ring-0 
                 outline-none 
                 text-[20px] 
-                placeholder-neutral-500 
+                placeholder-neutral-500
                 text-white
+                rounded-md
+                border-2
+                border-neutral-800
               "
               placeholder={placeholder}
             ></textarea>
@@ -83,11 +98,11 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
                 border-neutral-800 
                 transition"
             />
-            <div className="mt-4 flex flex-row justify-end">
+            <div className="mt-2 flex flex-row justify-end">
               <Button
                 disabled={isLoading || !body}
                 onClick={onSubmit}
-                label="Tweet"
+                label="Vitee"
               />
             </div>
           </div>
@@ -95,7 +110,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       ) : (
         <div className="py-8">
           <h1 className="text-white text-2xl text-center mb-4 font-bold">
-            Welcome to Twitter
+            Welcome to Vitter
           </h1>
           <div className="flex flex-row items-center justify-center gap-4">
             <Button label="Login" onClick={loginModal.onOpen} />

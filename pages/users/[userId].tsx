@@ -7,6 +7,7 @@ import UserHero from "@/components/users/UserHero"
 import UserBio from "@/components/users/UserBio"
 import useUser from "@/hooks/useUser"
 import PostFeed from "@/components/posts/PostFeed"
+import Head from "next/head"
 
 const UserPage = () => {
   const searchParams = useSearchParams()
@@ -28,6 +29,14 @@ const UserPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Vitter | User</title>
+        <meta
+          name="User Profile"
+          content="Vitter is a social media app built with Next.js and MongoDB."
+          key="desc"
+        />
+      </Head>
       <Header showBackArrow label={`${user.name}'s profile`} />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />

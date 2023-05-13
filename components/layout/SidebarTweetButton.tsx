@@ -58,7 +58,7 @@ const SidebarTweetButton = () => {
           text-[20px]
       "
         >
-          Tweet
+          Vitee
         </p>
       </div>
     </div>
