@@ -49,7 +49,12 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
   const onEnterPress = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (event.key === "Enter" && !event.shiftKey) {
+      if (
+        event.key === "Enter" &&
+        !event.shiftKey &&
+        !isLoading &&
+        body.trim()
+      ) {
         event.preventDefault()
         onSubmit()
       }
@@ -100,7 +105,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             />
             <div className="mt-2 flex flex-row justify-end">
               <Button
-                disabled={isLoading || !body}
+                disabled={isLoading || !body.trim()}
                 onClick={onSubmit}
                 label="Vitee"
               />

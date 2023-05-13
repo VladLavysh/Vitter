@@ -23,6 +23,10 @@ const RegisterModal = () => {
     try {
       setIsLoading(true)
 
+      if (!email || !password || !name || !username) {
+        return toast.error("Please fill all fields")
+      }
+
       await axios.post("/api/register", {
         email,
         password,
